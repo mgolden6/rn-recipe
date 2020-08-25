@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
-import CategoriesScreen from "./screens/CategoriesScreen";
+import MealsNavigator from "./navigation/MealsNavigation";
 
 const fetchFonts = () => {
+  return Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+};
+
+export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   if (!fontLoaded) {
@@ -17,12 +23,5 @@ const fetchFonts = () => {
     );
   }
 
-  return Font.loadAsync({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-  });
-};
-
-export default function App() {
-  return <CategoriesScreen />;
+  return <MealsNavigator />;
 }
