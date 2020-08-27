@@ -5,10 +5,8 @@ import {
   FlatList,
   TouchableOpacity,
   View,
-  Platform,
 } from "react-native";
 
-import Theme from "../constants/Theme";
 import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = (props) => {
@@ -36,14 +34,6 @@ const CategoriesScreen = (props) => {
 
 CategoriesScreen.navigationOptions = {
   headerTitle: "Meal Categories",
-  headerStyle: {
-    backgroundColor:
-      Platform.OS === "android"
-        ? Theme.colors.primaryColor
-        : Theme.colors.light,
-  },
-  headerTintColor:
-    Platform.OS === "android" ? Theme.colors.light : Theme.colors.primaryColor,
 };
 
 const styles = StyleSheet.create({
