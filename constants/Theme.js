@@ -5,4 +5,8 @@ export default {
     light: "white",
     dark: "black",
   },
+  fonts: {
+    regular: "open-sans",
+    bold: "open-sans-bold",
+  },
 };
