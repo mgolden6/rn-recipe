@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, FlatList } from "react-native";
+import { FlatList } from "react-native";
 
 import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/dummy-data";
@@ -27,7 +27,5 @@ const CategoriesScreen = (props) => {
 CategoriesScreen.navigationOptions = {
   headerTitle: "Meal Categories",
 };
-
-const styles = StyleSheet.create({});
 
 export default CategoriesScreen;
