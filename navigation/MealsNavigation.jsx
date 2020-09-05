@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -23,6 +23,12 @@ const defaultStackNavOptions = {
       Platform.OS === "android"
         ? Theme.colors.primaryColor
         : Theme.colors.light,
+  },
+  headerTitleStyle: {
+    fontFamily: Theme.fonts.bold,
+  },
+  headerBackTitleStyle: {
+    fontFamily: Theme.fonts.regular,
   },
   headerTintColor:
     Platform.OS === "android" ? Theme.colors.light : Theme.colors.primaryColor,
@@ -63,6 +69,18 @@ const tabScreenConfig = {
         );
       },
       tabBarColor: Theme.colors.primaryColor,
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text
+            style={{
+              fontFamily: Theme.fonts.regular,
+            }}
+          >
+            Meals
+          </Text>
+        ) : (
+          "Meals"
+        ),
     },
   },
   Favorites: {
@@ -74,6 +92,18 @@ const tabScreenConfig = {
         );
       },
       tabBarColor: Theme.colors.accentColor,
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text
+            style={{
+              fontFamily: Theme.fonts.regular,
+            }}
+          >
+            Favorites
+          </Text>
+        ) : (
+          "Favorites"
+        ),
     },
   },
 };
@@ -89,6 +119,9 @@ const MealsFavTabNavigator =
       })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: Theme.fonts.bold,
+          },
           activeTintColor: Theme.colors.accentColor,
         },
       });
@@ -116,7 +149,7 @@ const MainNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: Theme.colors.accentColor,
       labelStyle: {
-        fontFamily: Theme.fonts.bold,
+        fontFamily: Theme.fonts.regular,
       },
     },
   }
