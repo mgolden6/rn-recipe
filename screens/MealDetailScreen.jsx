@@ -1,18 +1,35 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { MEALS } from "../data/dummy-data";
 import CustomHeaderButton from "../components/CustomHeaderButton";
+import { ScrollView } from "react-native-gesture-handler";
+import DefaultText from "../components/DefaultText";
+import Theme from "../constants/Theme";
+import ListItem from "../components/ListItem";
 
 const MealDetailsScreen = (props) => {
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return (
-    <View style={styles.screen}>
-      <Text>{selectedMeal.title}</Text>
-    </View>
+    <ScrollView>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+      <View style={styles.detail}>
+        <DefaultText>{selectedMeal.duration}m</DefaultText>
+        <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
+        <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
+      </View>
+      <Text style={styles.title}>Ingredients</Text>
+      {selectedMeal.ingredients.map((ingredient) => (
+        <ListItem key={ingredient}> {ingredient} </ListItem>
+      ))}
+      <Text style={styles.title}>Steps</Text>
+      {selectedMeal.steps.map((step) => (
+        <ListItem key={step}>{step}</ListItem>
+      ))}
+    </ScrollView>
   );
 };
 
@@ -37,10 +54,20 @@ MealDetailsScreen.navigationOptions = (navigationdata) => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  title: {
+    fontFamily: Theme.fonts.bold,
+    fontSize: 22,
+    textAlign: "center",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+  },
+  detail: {
+    fontFamily: Theme.fonts.regular,
+    flexDirection: "row",
+    padding: 15,
+    justifyContent: "space-around",
   },
 });
 
