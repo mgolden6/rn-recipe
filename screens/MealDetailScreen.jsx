@@ -2,14 +2,15 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-import { MEALS } from "../data/dummy-data";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 import { ScrollView } from "react-native-gesture-handler";
 import DefaultText from "../components/DefaultText";
 import Theme from "../constants/Theme";
 import ListItem from "../components/ListItem";
+import { useSelector } from "react-redux";
 
 const MealDetailsScreen = (props) => {
+  const availableMeals = useSelector((state) => state.meals.meals);
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
